@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { useLayoutMode } from "@/hooks/useLayoutMode"
-import logo from "@/assets/layouts/logo.png?url"
-import logoText1 from "@/assets/layouts/logo-text-1.png?url"
-import logoText2 from "@/assets/layouts/logo-text-2.png?url"
+
+const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE
 
 interface Props {
   collapse?: boolean
@@ -18,11 +17,13 @@ const { isLeft, isTop } = useLayoutMode()
 <template>
   <div class="layout-logo-container" :class="{ collapse: props.collapse, 'layout-mode-top': isTop }">
     <transition name="layout-logo-fade">
-      <router-link v-if="props.collapse" key="collapse" to="/">
-        <img :src="logo" class="layout-logo" />
-      </router-link>
-      <router-link v-else key="expand" to="/">
-        <img :src="!isLeft ? logoText2 : logoText1" class="layout-logo-text" />
+      <router-link class="layout-logo-content">
+        <img
+          src="http://144.48.83.77:9002/xh_admin/images/%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6/u38.svg"
+          class="layout-logo-text"
+          alt=""
+        />
+        <div class="layout-text">{{ VITE_APP_TITLE }}</div>
       </router-link>
     </transition>
   </div>
@@ -40,8 +41,17 @@ const { isLeft, isTop } = useLayoutMode()
     display: none;
   }
   .layout-logo-text {
-    height: 100%;
-    vertical-align: middle;
+    width: 20%;
+    margin-right: 10px;
+  }
+  .layout-logo-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .layout-text {
+    font-size: 20px;
+    color: #fcfcfc;
   }
 }
 

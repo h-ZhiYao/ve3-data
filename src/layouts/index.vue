@@ -7,9 +7,7 @@ import { useWatermark } from "@/hooks/useWatermark"
 import { useDevice } from "@/hooks/useDevice"
 import { useLayoutMode } from "@/hooks/useLayoutMode"
 import LeftMode from "./LeftMode.vue"
-import TopMode from "./TopMode.vue"
-import LeftTopMode from "./LeftTopMode.vue"
-import { Settings, RightPanel } from "./components"
+import { Settings } from "./components"
 import { getCssVariableValue, setCssVariableValue } from "@/utils"
 
 /** Layout 布局响应式 */
@@ -37,25 +35,12 @@ watchEffect(() => {
     : setCssVariableValue(cssVariableName, "0px")
 })
 //#endregion
-
-/** 开启或关闭系统水印 */
-watchEffect(() => {
-  showWatermark.value ? setWatermark(import.meta.env.VITE_APP_TITLE) : clearWatermark()
-})
 </script>
 
 <template>
   <div :class="classes">
     <!-- 左侧模式 -->
-    <LeftMode v-if="isLeft || isMobile" />
-    <!-- 顶部模式 -->
-    <TopMode v-else-if="isTop" />
-    <!-- 混合模式 -->
-    <LeftTopMode v-else-if="isLeftTop" />
-    <!-- 右侧设置面板 -->
-    <RightPanel v-if="showSettings">
-      <Settings />
-    </RightPanel>
+    <LeftMode />
   </div>
 </template>
 

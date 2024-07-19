@@ -2,7 +2,7 @@ import { ref } from "vue"
 import store from "@/store"
 import { defineStore } from "pinia"
 import { type RouteRecordRaw } from "vue-router"
-import { constantRoutes, dynamicRoutes } from "@/router"
+import { constantRoutes } from "@/router"
 import { flatMultiLevelRoutes } from "@/router/helper"
 import routeSettings from "@/config/route"
 
@@ -33,13 +33,13 @@ export const usePermissionStore = defineStore("permission", () => {
 
   /** 根据角色生成可访问的 Routes（可访问的路由 = 常驻路由 + 有访问权限的动态路由） */
   const setRoutes = (roles: string[]) => {
-    const accessedRoutes = filterDynamicRoutes(dynamicRoutes, roles)
+    const accessedRoutes = filterDynamicRoutes([], roles)
     _set(accessedRoutes)
   }
 
   /** 所有路由 = 所有常驻路由 + 所有动态路由 */
   const setAllRoutes = () => {
-    _set(dynamicRoutes)
+    _set(constantRoutes)
   }
 
   const _set = (accessedRoutes: RouteRecordRaw[]) => {

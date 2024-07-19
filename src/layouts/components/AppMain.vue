@@ -19,7 +19,6 @@ const settingsStore = useSettingsStore()
         </transition>
       </router-view>
       <!-- 页脚 -->
-      <Footer v-if="settingsStore.showFooter" />
     </div>
     <!-- 返回顶部 -->
     <el-backtop />

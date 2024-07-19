@@ -2,83 +2,33 @@
 import { ref, computed } from "vue"
 import { ElMessage } from "element-plus"
 import { Bell } from "@element-plus/icons-vue"
-import NotifyList from "./NotifyList.vue"
-import { type ListItem, notifyData, messageData, todoData } from "./data"
-
-type TabName = "通知" | "消息" | "待办"
-
-interface DataItem {
-  name: TabName
-  type: "primary" | "success" | "warning" | "danger" | "info"
-  list: ListItem[]
-}
-
-/** 角标当前值 */
-const badgeValue = computed(() => {
-  return data.value.reduce((sum, item) => sum + item.list.length, 0)
-})
-/** 角标最大值 */
-const badgeMax = 99
-/** 面板宽度 */
-const popoverWidth = 350
-/** 当前 Tab */
-const activeName = ref<TabName>("通知")
-/** 所有数据 */
-const data = ref<DataItem[]>([
-  // 通知数据
-  {
-    name: "通知",
-    type: "primary",
-    list: notifyData
-  },
-  // 消息数据
-  {
-    name: "消息",
-    type: "danger",
-    list: messageData
-  },
-  // 待办数据
-  {
-    name: "待办",
-    type: "warning",
-    list: todoData
-  }
-])
-
-const handleHistory = () => {
-  ElMessage.success(`跳转到${activeName.value}历史页面`)
-}
 </script>
 
 <template>
   <div class="notify">
-    <el-popover placement="bottom" :width="popoverWidth" trigger="click">
-      <template #reference>
-        <el-badge :value="badgeValue" :max="badgeMax" :hidden="badgeValue === 0">
-          <el-tooltip effect="dark" content="消息通知" placement="bottom">
-            <el-icon :size="20">
-              <Bell />
-            </el-icon>
-          </el-tooltip>
-        </el-badge>
+    <el-dropdown class="right-menu-item">
+      <el-badge :value="50" :max="99" :hidden="true">
+        <el-icon :size="20">
+          <Bell />
+        </el-icon>
+      </el-badge>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>
+            <span style="display: block">全部消息</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span style="display: block">产品消息</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span style="display: block">安全消息</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span style="display: block">服务消息</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
       </template>
-      <template #default>
-        <el-tabs v-model="activeName" class="demo-tabs" stretch>
-          <el-tab-pane v-for="(item, index) in data" :name="item.name" :key="index">
-            <template #label>
-              {{ item.name }}
-              <el-badge :value="item.list.length" :max="badgeMax" :type="item.type" />
-            </template>
-            <el-scrollbar height="400px">
-              <NotifyList :list="item.list" />
-            </el-scrollbar>
-          </el-tab-pane>
-        </el-tabs>
-        <div class="notify-history">
-          <el-button link @click="handleHistory">查看{{ activeName }}历史</el-button>
-        </div>
-      </template>
-    </el-popover>
+    </el-dropdown>
   </div>
 </template>
 
