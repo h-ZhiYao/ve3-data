@@ -6,8 +6,8 @@ import { type FormInstance, type FormRules } from "element-plus"
 import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import { getLoginCodeApi } from "@/api/login"
 import { type LoginRequestData } from "@/api/login/types/login"
-import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
-import Owl from "./components/Owl.vue"
+// import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+// import Owl from "./components/Owl.vue"
 import { useFocus } from "./hooks/useFocus"
 
 const router = useRouter()
@@ -74,8 +74,8 @@ createCode()
 
 <template>
   <div class="login-container">
-    <ThemeSwitch class="theme-switch" />
-    <Owl :close-eyes="isFocus" />
+    <!-- <ThemeSwitch class="theme-switch" /> -->
+    <!-- <Owl :close-eyes="isFocus" />  -->
     <div class="login-card">
       <div class="title">
         <img src="@/assets/layouts/logo-text-2.png" />
@@ -105,7 +105,7 @@ createCode()
               @focus="handleFocus"
             />
           </el-form-item>
-          <el-form-item prop="code">
+          <!-- <el-form-item prop="code">
             <el-input
               v-model.trim="loginFormData.code"
               placeholder="验证码"
@@ -130,7 +130,7 @@ createCode()
                 </el-image>
               </template>
             </el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">登 录</el-button>
         </el-form>
       </div>
