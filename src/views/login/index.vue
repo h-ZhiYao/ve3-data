@@ -76,36 +76,44 @@ createCode()
   <div class="login-container">
     <!-- <ThemeSwitch class="theme-switch" /> -->
     <!-- <Owl :close-eyes="isFocus" />  -->
-    <div class="login-card">
-      <div class="title">
+    <div class="login-content">
+      <div class="img-container">
         <img src="@/assets/layouts/logo-text-2.png" />
       </div>
-      <div class="content">
-        <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
-          <el-form-item prop="username">
-            <el-input
-              v-model.trim="loginFormData.username"
-              placeholder="用户名"
-              type="text"
-              tabindex="1"
-              :prefix-icon="User"
-              size="large"
-            />
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              v-model.trim="loginFormData.password"
-              placeholder="密码"
-              type="password"
-              tabindex="2"
-              :prefix-icon="Lock"
-              size="large"
-              show-password
-              @blur="handleBlur"
-              @focus="handleFocus"
-            />
-          </el-form-item>
-          <!-- <el-form-item prop="code">
+      <div class="login-card">
+        <div class="title">
+          <div class="logo">
+            <img src="@/assets/layouts/logo-text-2.png" />
+          </div>
+          <div>企业数据服务解决方案系统</div>
+          <div>Enterprise Data Service Solutions</div>
+        </div>
+        <div class="content">
+          <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
+            <el-form-item prop="username">
+              <el-input
+                v-model.trim="loginFormData.username"
+                placeholder="请输入用户名称"
+                type="text"
+                tabindex="1"
+                :prefix-icon="User"
+                size="large"
+              />
+            </el-form-item>
+            <el-form-item prop="password">
+              <el-input
+                v-model.trim="loginFormData.password"
+                placeholder="请输入登录密码"
+                type="password"
+                tabindex="2"
+                :prefix-icon="Lock"
+                size="large"
+                show-password
+                @blur="handleBlur"
+                @focus="handleFocus"
+              />
+            </el-form-item>
+            <!-- <el-form-item prop="code">
             <el-input
               v-model.trim="loginFormData.code"
               placeholder="验证码"
@@ -131,8 +139,9 @@ createCode()
               </template>
             </el-input>
           </el-form-item> -->
-          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">登 录</el-button>
-        </el-form>
+            <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">登 录</el-button>
+          </el-form>
+        </div>
       </div>
     </div>
   </div>
@@ -146,6 +155,28 @@ createCode()
   align-items: center;
   width: 100%;
   min-height: 100%;
+
+  .login-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 680px;
+    max-width: 90%;
+    box-shadow: 0 0 10px #dcdfe6;
+    background-color: var(--el-bg-color);
+    overflow: hidden;
+    .img-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: aliceblue;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
   .theme-switch {
     position: fixed;
     top: 5%;
@@ -153,19 +184,22 @@ createCode()
     cursor: pointer;
   }
   .login-card {
-    width: 480px;
-    max-width: 90%;
-    border-radius: 20px;
-    box-shadow: 0 0 10px #dcdfe6;
+    flex: 1;
+    // width: 480px;
+    // max-width: 90%;
+    // border-radius: 20px;
+    // box-shadow: 0 0 10px #dcdfe6;
     background-color: var(--el-bg-color);
     overflow: hidden;
     .title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 150px;
-      img {
-        height: 100%;
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 350px;
+        img {
+          height: 100%;
+        }
       }
     }
     .content {
