@@ -85,8 +85,8 @@ createCode()
           <div class="logo">
             <img src="@/assets/layouts/logo-text-2.png" />
           </div>
-          <div>企业数据服务解决方案系统</div>
-          <div>Enterprise Data Service Solutions</div>
+          <div class="cn">企业数据服务解决方案系统</div>
+          <div class="en">Enterprise Data Service Solutions</div>
         </div>
         <div class="content">
           <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
@@ -153,6 +153,7 @@ createCode()
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #3981f4;
   width: 100%;
   min-height: 100%;
 
@@ -162,7 +163,7 @@ createCode()
     align-items: center;
     width: 680px;
     max-width: 90%;
-    box-shadow: 0 0 10px #dcdfe6;
+    // box-shadow: 0 0 10px #dcdfe6;
     background-color: var(--el-bg-color);
     overflow: hidden;
     .img-container {
@@ -192,6 +193,9 @@ createCode()
     background-color: var(--el-bg-color);
     overflow: hidden;
     .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .logo {
         display: flex;
         justify-content: center;
@@ -200,6 +204,19 @@ createCode()
         img {
           height: 100%;
         }
+      }
+
+      .cn,
+      .en {
+        color: #3981f4;
+      }
+      .cn {
+        font-size: 24px;
+        font-weight: bolder;
+      }
+      .en {
+        font-size: 19px;
+        margin-top: 4px;
       }
     }
     .content {
