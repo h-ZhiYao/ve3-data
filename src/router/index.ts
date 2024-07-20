@@ -1,7 +1,7 @@
 import { type RouteRecordRaw, createRouter } from "vue-router"
 import { history, flatMultiLevelRoutes } from "./helper"
 import routeSettings from "@/config/route"
-
+import Home from "@/views/home/index.vue"
 const Layouts = () => import("@/layouts/index.vue")
 
 /**
@@ -47,15 +47,15 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/",
     component: Layouts,
-    redirect: "/dashboard",
+    redirect: "/home",
     children: [
       {
-        path: "dashboard",
-        component: () => import("@/views/dashboard/index.vue"),
-        name: "Dashboard",
+        path: "home",
+        component: () => import("@/views/home/index.vue"),
+        name: "Home",
         meta: {
           title: "首页",
-          svgIcon: "dashboard",
+          elIcon: "Grid",
           affix: true
         }
       }
@@ -64,54 +64,33 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/hygl",
     meta: {
-      title: "会员管理"
-      // svgIcon: "link"
-    },
-    children: [
-      {
-        path: "https://juejin.cn/post/7089377403717287972",
-        component: () => {},
-        name: "Link1",
-        meta: {
-          title: "中文文档"
-        }
-      },
-      {
-        path: "https://juejin.cn/column/7207659644487139387",
-        component: () => {},
-        name: "Link2",
-        meta: {
-          title: "新手教程"
-        }
-      }
-    ]
-  },
-  {
-    path: "/table",
-    component: Layouts,
-    redirect: "/table/element-plus",
-    name: "Table",
-    meta: {
-      title: "表格",
+      title: "会员管理",
       elIcon: "Grid"
     },
+    component: Layouts,
     children: [
       {
-        path: "element-plus",
-        component: () => import("@/views/table/element-plus/index.vue"),
-        name: "ElementPlus",
+        path: "hylb",
+        component: () => import("@/views/hylb/index.vue"),
+        name: "HYLB",
         meta: {
-          title: "Element Plus",
-          keepAlive: true
+          title: "会员列表"
         }
       },
       {
-        path: "vxe-table",
-        component: () => import("@/views/table/vxe-table/index.vue"),
-        name: "VxeTable",
+        path: "hydj",
+        component: () => {},
+        name: "HYDJ",
         meta: {
-          title: "Vxe Table",
-          keepAlive: true
+          title: "会员等级"
+        }
+      },
+      {
+        path: "fypz",
+        component: () => {},
+        name: "FYPZ",
+        meta: {
+          title: "返佣配置"
         }
       }
     ]
